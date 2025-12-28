@@ -1,40 +1,45 @@
-const canvas = document.getElementById("game");
-const ctx = canvas.getContext("2d");
+const dino = document.getElementById("dino");
+const cactus = document.getElementById("cactus");
+const scoreEl = document.getElementById("score");
 
-let dinoY = 200;
-let velocity = 0;
-let gravity = 0.8;
-let jumping = false;
+let score = 0;
+let isJumping = false;
 
+/* ZIPLAMA */
 function jump() {
-  if (!jumping) {
-    velocity = -12;
-    jumping = true;
-  }
+  if (isJumping) return;
+
+  isJumping = true;
+  dino.classList.add("jump");
+
+  setTimeout(() => {
+    dino.classList.remove("jump");
+    isJumping = false;
+  }, 600);
 }
 
-// klavye
+/* TUŞ + MOBİL */
 document.addEventListener("keydown", jump);
-// mobil
-canvas.addEventListener("touchstart", jump);
+document.addEventListener("touchstart", jump);
 
-function gameLoop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+/* ÇARPIŞMA + SKOR */
+setInterval(() => {
+  const dinoBottom = parseInt(
+    window.getComputedStyle(dino).getPropertyValue("bottom")
+  );
 
-  velocity += gravity;
-  dinoY += velocity;
+  const cactusRight = parseInt(
+    window.getComputedStyle(cactus).getPropertyValue("right")
+  );
 
-  if (dinoY > 200) {
-    dinoY = 200;
-    velocity = 0;
-    jumping = false;
+  // ÇARPIŞMA
+  if (cactusRight > 520 && cactusRight < 560 && dinoBottom < 40) {
+    alert("GAME OVER\nSkor: " + score);
+    location.reload();
   }
 
-  // dino
-  ctx.fillStyle = "white";
-  ctx.fillRect(50, dinoY, 40, 40);
+  // SKOR
+  score++;
+  scoreEl.innerText = score;
 
-  requestAnimationFrame(gameLoop);
-}
-
-gameLoop();
+}, 100);
