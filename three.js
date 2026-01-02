@@ -1,3 +1,4 @@
+// SAHNE
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(
@@ -9,73 +10,70 @@ const camera = new THREE.PerspectiveCamera(
 
 const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector("#bg"),
-  alpha: true
+  alpha: true,
+  antialias: true
 });
 
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.z = 35;
+camera.position.z = 40;
 
-// IŞIKLAR
-const light1 = new THREE.PointLight(0xffcc88, 1.5);
-light1.position.set(20, 20, 20);
+// IŞIKLAR (SİNEMATİK)
+scene.add(new THREE.AmbientLight(0x331100, 0.4));
 
-const light2 = new THREE.PointLight(0xff0000, 0.5);
-light2.position.set(-20, -10, 10);
+const keyLight = new THREE.PointLight(0xffc27a, 1.8);
+keyLight.position.set(20, 20, 20);
+scene.add(keyLight);
 
-scene.add(light1, light2);
+const redLight = new THREE.PointLight(0x8b0000, 0.8);
+redLight.position.set(-20, -10, 5);
+scene.add(redLight);
 
 // =======================
-// KILIÇ MODELİ
+// YENİÇERİ KILIÇ MODELİ
 // =======================
 
-// Bıçak
-const bladeGeo = new THREE.BoxGeometry(1, 20, 0.3);
+const sword = new THREE.Group();
+
+// Eğri bıçak
+const bladeGeo = new THREE.BoxGeometry(1, 22, 0.4);
+bladeGeo.translate(0, 11, 0);
+
 const bladeMat = new THREE.MeshStandardMaterial({
-  color: 0xcfd2d6,
-  metalness: 0.9,
-  roughness: 0.2
+  color: 0xdfe3e6,
+  metalness: 0.95,
+  roughness: 0.15
 });
+
 const blade = new THREE.Mesh(bladeGeo, bladeMat);
-blade.position.y = 8;
+blade.rotation.z = -0.08; // eğrilik
 
 // Kabza
-const handleGeo = new THREE.CylinderGeometry(0.6, 0.6, 5, 32);
-const handleMat = new THREE.MeshStandardMaterial({
-  color: 0x3b2f2f
-});
+const handleGeo = new THREE.CylinderGeometry(0.7, 0.8, 5, 32);
+const handleMat = new THREE.MeshStandardMaterial({ color: 0x2b1b14 });
 const handle = new THREE.Mesh(handleGeo, handleMat);
-handle.position.y = -5;
+handle.position.y = -4;
 
 // Muhafaza
-const guardGeo = new THREE.BoxGeometry(6, 0.6, 1);
+const guardGeo = new THREE.BoxGeometry(7, 0.8, 1.2);
 const guardMat = new THREE.MeshStandardMaterial({
-  color: 0x8b0000,
+  color: 0x7a0000,
   metalness: 0.7
 });
 const guard = new THREE.Mesh(guardGeo, guardMat);
-guard.position.y = -2;
+guard.position.y = -1.5;
 
-// GRUPLA
-const sword = new THREE.Group();
+// Birleştir
 sword.add(blade, handle, guard);
 scene.add(sword);
 
 // AÇI
-sword.rotation.z = Math.PI / 6;
+sword.rotation.z = Math.PI / 10;
 
 // ANİMASYON
 function animate() {
   requestAnimationFrame(animate);
-  sword.rotation.y += 0.003;
-  sword.rotation.x += 0.001;
+  sword.rotation.y += 0.002;
+  sword.rotation.x += 0.0008;
   renderer.render(scene, camera);
 }
-
 animate();
-
-// RESPONSIVE
-window.addEventListener("resize", () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
