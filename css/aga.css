@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle, #1a0000, #000);
+  font-family: "Times New Roman", serif;
+  color: #f0d9a6;
+}
+
+.aga-box {
+  max-width: 600px;
+  margin: 120px auto;
+  padding: 70px;
+  text-align: center;
+  border: 3px solid #8b0000;
+  background: rgba(0,0,0,0.6);
+}
+
+.aga-box h1 {
+  letter-spacing: 3px;
+}
+
+.aga-box h2 {
+  margin: 30px 0;
+  font-size: 32px;
+  color: #8b0000;
+}

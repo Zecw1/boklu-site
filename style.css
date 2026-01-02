@@ -1,63 +1,39 @@
 body {
   margin: 0;
-  font-family: 'Cinzel', serif;
-  background: black;
-  color: #e6c78c;
+  font-family: "Times New Roman", serif;
+  background: #111;
+  color: #f2e6c9;
 }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 50px;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(6px);
-}
-
-header h1 {
-  font-size: 22px;
-}
-
-nav a {
-  color: #e6c78c;
-  margin-left: 20px;
-  text-decoration: none;
-}
-
-section {
+.header {
   max-width: 900px;
-  margin: auto;
-  padding: 120px 40px;
+  margin: 80px auto;
+  padding: 60px;
+  background: #2a1a0f;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
 }
 
-h2 {
-  font-size: 30px;
+.logo {
+  width: 120px;
   margin-bottom: 20px;
 }
 
-.btn {
-  display: inline-block;
-  margin: 15px 20px 0 0;
-  padding: 15px 30px;
-  background: #3d342a;
-  color: white;
+h1 {
+  font-size: 36px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+nav a {
+  color: #caa45c;
   text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: 0.3s;
+  margin-right: 20px;
+  font-size: 18px;
 }
 
-.btn:hover {
-  transform: scale(1.08);
-  background: #6e5849;
-}
-
-.btn.red {
-  background: darkred;
+nav a:hover {
+  text-decoration: underline;
 }
