@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  background: black;
+  color: #e6c78c;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 50px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+}
+
+header h1 {
+  font-size: 22px;
+}
+
+nav a {
+  color: #e6c78c;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 120px 40px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 15px 20px 0 0;
+  padding: 15px 30px;
+  background: #3d342a;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  background: #6e5849;
+}
+
+.btn.red {
+  background: darkred;
+}
