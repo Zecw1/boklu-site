@@ -1,0 +1,23 @@
+.music-btn {
+  background: #6b0f0f;
+  color: #f5e6c8;
+  border: none;
+  padding: 12px 20px;
+  margin-right: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Cinzel', serif;
+}
+
+.music-btn:hover {
+  background: #9e1b1b;
+}
+
+.music-btn.stop {
+  background: #444;
+}
+
+.music-btn.stop:hover {
+  background: #666;
+}
